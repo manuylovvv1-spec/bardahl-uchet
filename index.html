@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -9,30 +10,100 @@
 <title>BARDAHL — учёт заказов</title>
 <style>
 :root{color-scheme:dark;--yellow:#ffd400;--bg:#111;--panel:#1c1c1c;--line:#414141;--muted:#bdbdbd}
-*{box-sizing:border-box}body{margin:0 auto;padding:16px 14px calc(28px + env(safe-area-inset-bottom));max-width:720px;background:var(--bg);color:#f4f4f4;font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-header{display:flex;align-items:center;gap:12px;margin:4px 0 18px}header img{width:66px;height:66px}h1{font-size:27px;letter-spacing:1px;color:var(--yellow);margin:0}h2{font-size:21px;margin:24px 0 10px}.sub{color:var(--muted);font-size:13px;margin:4px 0 0}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}label{display:block;font-size:13px;color:#ccc;margin:8px 0 4px}
-input,select,button{font:inherit;width:100%;padding:13px;margin:5px 0;border-radius:9px}input,select{background:#252525;color:white;border:1px solid #555;min-height:47px}button{background:var(--yellow);color:#111;border:0;font-weight:750;min-height:45px;cursor:pointer}button:active{transform:scale(.99)}button.secondary{background:#333;color:#fff;border:1px solid #555}button.danger{background:#4a2424;color:#fff;border:1px solid #774040}button.small{width:auto;min-height:36px;padding:8px 10px;font-size:13px;margin:4px 4px 0 0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.total{font-size:22px;font-weight:800;color:var(--yellow);padding:10px 0}.item,.order{border:1px solid var(--line);border-radius:10px;padding:11px;margin:8px 0;overflow-wrap:anywhere}.itemrow{display:flex;gap:10px;align-items:center;justify-content:space-between}.itemname{flex:1}.price{white-space:nowrap;font-weight:700}.muted{color:var(--muted);font-size:13px}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.stat{background:#252525;border-radius:10px;padding:10px}.stat strong{display:block;color:var(--yellow);font-size:17px;margin-top:5px}.orderhead{font-weight:750;font-size:17px}.orderdetail{color:#ddd;font-size:14px;line-height:1.5;margin:8px 0}.toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px}.empty{color:var(--muted);text-align:center;padding:18px 6px}#custom[hidden],#restoreFile[hidden]{display:none!important}footer{color:#777;font-size:12px;text-align:center;margin:24px 0 4px}
-@media(max-width:420px){.stats{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}@media(min-width:560px){.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.formgrid>div{min-width:0}}
+*{box-sizing:border-box}
+body{margin:0 auto;padding:16px 14px calc(28px + env(safe-area-inset-bottom));max-width:720px;background:var(--bg);color:#f4f4f4;font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+header{display:flex;align-items:center;gap:12px;margin:4px 0 18px}
+header img{width:66px;height:66px}
+h1{font-size:27px;letter-spacing:1px;color:var(--yellow);margin:0}
+h2{font-size:21px;margin:24px 0 10px}
+.sub{color:var(--muted);font-size:13px;margin:4px 0 0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
+label{display:block;font-size:13px;color:#ccc;margin:8px 0 4px}
+input,select,button{font:inherit;width:100%;padding:13px;margin:5px 0;border-radius:9px}
+input,select{background:#252525;color:white;border:1px solid #555;min-height:47px}
+button{background:var(--yellow);color:#111;border:0;font-weight:750;min-height:45px;cursor:pointer}
+button:active{transform:scale(.99)}
+button.secondary{background:#333;color:#fff;border:1px solid #555}
+button.danger{background:#4a2424;color:#fff;border:1px solid #774040}
+button.small{width:auto;min-height:36px;padding:8px 10px;font-size:13px;margin:4px 4px 0 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.total{font-size:22px;font-weight:800;color:var(--yellow);padding:10px 0}
+.item,.order{border:1px solid var(--line);border-radius:10px;padding:11px;margin:8px 0;overflow-wrap:anywhere}
+.itemrow{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.itemname{flex:1}
+.price{white-space:nowrap;font-weight:700}
+.muted{color:var(--muted);font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.stat{background:#252525;border-radius:10px;padding:10px}
+.stat strong{display:block;color:var(--yellow);font-size:17px;margin-top:5px}
+.orderhead{font-weight:750;font-size:17px}
+.orderdetail{color:#ddd;font-size:14px;line-height:1.5;margin:8px 0}
+.toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.empty{color:var(--muted);text-align:center;padding:18px 6px}
+#custom[hidden],#restoreFile[hidden]{display:none!important}
+footer{color:#777;font-size:12px;text-align:center;margin:24px 0 4px}
+@media(max-width:420px){.stats{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+@media(min-width:560px){.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.formgrid>div{min-width:0}}
 </style>
 </head>
 <body>
-<header><img src="./icon-192.svg" alt="BARDAHL"><div><h1>BARDAHL</h1><p class="sub">Учёт работ и заказов автосервиса · суммы в тенге (₸)</p></div></header>
+<header>
+<img src="./icon-192.svg" alt="BARDAHL">
+<div>
+<h1>BARDAHL</h1>
+<p class="sub">Учёт работ и заказов автосервиса · суммы в тенге (₸)</p>
+</div>
+</header>
+
 <section class="panel">
 <h2 style="margin-top:0">Новый заказ</h2>
-<label for="car">Автомобиль / госномер</label><input id="car" placeholder="Например, Toyota Camry 123ABC" autocomplete="off">
-<div class="formgrid"><div><label for="service">Услуга</label><select id="service"></select></div><div><label for="price">Цена, ₸ (можно изменить)</label><input id="price" type="number" inputmode="decimal" min="1" step="1" placeholder="Цена"></div></div>
+<label for="car">Автомобиль / госномер</label>
+<input id="car" placeholder="Например, Toyota Camry 123ABC" autocomplete="off">
+
+<div class="formgrid">
+<div>
+<label for="service">Услуга</label>
+<select id="service"></select>
+</div>
+<div>
+<label for="price">Цена, ₸ (можно изменить)</label>
+<input id="price" type="number" inputmode="decimal" min="1" step="1" placeholder="Цена">
+</div>
+</div>
+
 <input id="custom" placeholder="Название услуги СТО" hidden>
 <button id="add" type="button">＋ Добавить услугу</button>
-<div id="cart"></div><div class="total" id="cartTotal">Итого: 0 ₸</div>
+<div id="cart"></div>
+<div class="total" id="cartTotal">Итого: 0 ₸</div>
 <button id="save" type="button">Сохранить заказ</button>
 </section>
-<section><h2>Отчёты</h2><div class="panel"><label for="date">Дата отчёта</label><input id="date" type="date"><div id="report" class="stats"></div></div></section>
-<section><h2>История заказов</h2><input id="search" placeholder="Поиск по автомобилю или услуге" autocomplete="off"><div class="toolbar"><button id="exportCsv" class="secondary" type="button">Экспорт CSV</button><button id="backup" class="secondary" type="button">Резервная копия</button></div><button id="restoreBtn" class="secondary" type="button">Восстановить из копии</button><input id="restoreFile" type="file" accept="application/json,.json" hidden><div id="orders"></div></section>
+
+<section>
+<h2>Отчёты</h2>
+<div class="panel">
+<label for="date">Дата отчёта</label>
+<input id="date" type="date">
+<div id="report" class="stats"></div>
+</div>
+</section>
+
+<section>
+<h2>История заказов</h2>
+<input id="search" placeholder="Поиск по автомобилю или услуге" autocomplete="off">
+<div class="toolbar">
+<button id="exportCsv" class="secondary" type="button">Экспорт CSV</button>
+<button id="backup" class="secondary" type="button">Резервная копия</button>
+</div>
+<button id="restoreBtn" class="secondary" type="button">Восстановить из копии</button>
+<input id="restoreFile" type="file" accept="application/json,.json" hidden>
+<div id="orders"></div>
+</section>
+
 <footer>Данные хранятся в этом браузере. Регулярно сохраняйте резервную копию.</footer>
+
 <script>
 'use strict';
+
 const services = [
 ["Замена масла в двигателе",1200],
 ["Замена фильтра воздушного",200],
@@ -57,140 +128,404 @@ const services = [
 ["Заправка кондиционера",3000],
 ["Нарезка резьбы",2000]
 ];
+
 const $ = id => document.getElementById(id);
 const STORAGE_KEY = 'bardahlOrders';
-let cart = [], orders = [], editingId = null;
+let cart = [];
+let orders = [];
+let editingId = null;
+
 const money = n => `${Number(n || 0).toLocaleString('ru-RU')} ₸`;
 const makeId = () => Date.now().toString(36) + Math.random().toString(36).slice(2,8);
-function today(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
-function loadOrders(){try{const data=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');orders=Array.isArray(data)?data.map(o=>({...o,id:o.id||makeId(),items:Array.isArray(o.items)?o.items:[],total:Number(o.total)||0,car:String(o.car||''),date:String(o.date||'')})):[]}catch(e){orders=[]}}
-function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(orders));return true}catch(e){alert('Не удалось сохранить данные. Сделайте резервную копию и освободите место в хранилище браузера.');return false}}
-function initServices(){
- const select=$('service');
- for(const [name,price] of services){const op=document.createElement('option');op.value=name;op.textContent=name;op.dataset.price=price;select.append(op)}
- const op=document.createElement('option');op.value='__custom__';op.textContent='Услуга СТО — прописать вручную';select.append(op);
- select.onchange=()=>{const selected=select.selectedOptions[0];const manual=selected.value==='__custom__';$('custom').hidden=!manual;$('price').value=selected.dataset.price||'';if(manual)$('custom').focus()};
- select.onchange();
+
+function today(){
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
-function drawCart(){const root=$('cart');root.replaceChildren();if(!cart.length)root.innerHTML='<div class="empty">Добавьте услуги в заказ</div>';cart.forEach((it,i)=>{const row=document.createElement('div');row.className='item itemrow';const name=document.createElement('div');name.className='itemname';name.textContent=it.name;const price=document.createElement('div');price.className='price';price.textContent=money(it.price);const remove=document.createElement('button');remove.className='small danger';remove.type='button';remove.textContent='Убрать';remove.onclick=()=>{cart.splice(i,1);drawCart()};row.append(name,price,remove);root.append(row)});$('cartTotal').textContent='Итого: '+money(cart.reduce((s,i)=>s+Number(i.price),0))}
-$('add').onclick=()=>{const selected=$('service').selectedOptions[0];const manual=selected.value==='__custom__';const name=manual?$('custom').value.trim():selected.value;const price=Number($('price').value);if(!name||!Number.isFinite(price)||price<=0){alert('Укажите услугу и цену больше нуля.');return}cart.push({name,price:Math.round(price)});$('custom').value='';drawCart()};
-$('save').onclick=()=>{const car=$('car').value.trim();if(!car||!cart.length){alert('Укажите автомобиль и добавьте хотя бы одну услугу.');return}const date=$('date').value||today();const total=cart.reduce((s,i)=>s+Number(i.price),0);if(editingId){const idx=orders.findIndex(o=>o.id===editingId);if(idx>=0)orders[idx]={...orders[idx],car,date,items:[...cart],total};editingId=null;$('save').textContent='Сохранить заказ'}else orders.push({id:makeId(),car,date,items:[...cart],total,createdAt:new Date().toISOString()});if(!persist())return;cart=[];$('car').value='';$('custom').value='';drawCart();drawReport();drawOrders();alert('Заказ сохранён.')};
-$('date').value=today();$('date').onchange=()=>{drawReport();drawOrders()};
-function drawReport(){const date=$('date').value||today(),month=date.slice(0,7),year=date.slice(0,4);const groups=[['День',orders.filter(o=>o.date===date)],['Месяц',orders.filter(o=>o.date.startsWith(month))],['Год',orders.filter(o=>o.date.startsWith(year))]];const root=$('report');root.replaceChildren();groups.forEach(([label,list])=>{const box=document.createElement('div');box.className='stat';const title=document.createElement('span');title.className='muted';title.textContent=label;const count=document.createElement('div');count.textContent=`${list.length} заказ(ов)`;const total=document.createElement('strong');total.textContent=money(list.reduce((s,o)=>s+Number(o.total||0),0));box.append(title,count,total);root.append(box)})}
-function drawOrders(){const root=$('orders');root.replaceChildren();const q=$('search').value.trim().toLowerCase();const filtered=orders.filter(o=>o.date===($('date').value||today())&&(String(o.car).toLowerCase().includes(q)||o.items.some(i=>String(i.name).toLowerCase().includes(q))));if(!filtered.length){root.innerHTML='<div class="empty">Заказов за выбранную дату не найдено</div>';return}for(const o of filtered){const box=document.createElement('article');box.className='order';const head=document.createElement('div');head.className='orderhead';head.textContent=o.car+' · '+o.date;const detail=document.createElement('div');detail.className='orderdetail';detail.textContent=o.items.map(i=>`${i.name} — ${money(i.price)}`).join('; ');const total=document.createElement('div');total.className='total';total.textContent='Итого: '+money(o.total);const edit=document.createElement('button');edit.className='small secondary';edit.type='button';edit.textContent='Редактировать';edit.onclick=()=>{editingId=o.id;$('car').value=o.car;$('date').value=o.date;cart=o.items.map(i=>({...i}));drawCart();$('save').textContent='Сохранить изменения';window.scrollTo({top:0,behavior:'smooth'})};const del=document.createElement('button');del.className='small danger';del.type='button';del.textContent='Удалить заказ';del.onclick=()=>{if(confirm('Удалить этот заказ?')){orders=orders.filter(x=>x.id!==o.id);if(persist()){drawReport();drawOrders()}}};box.append(head,detail,total,edit,del);root.append(box)}}
-$('search').oninput=drawOrders;
-$('exportCsv').onclick=()=>{const rows=[['Дата','Автомобиль','Услуги','Итого'],...orders.map(o=>[o.date,o.car,o.items.map(i=>`${i.name}: ${i.price}`).join('; '),o.total])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(';')).join('\r\n');downloadFile(csv,'bardahl-orders.csv','text/csv;charset=utf-8')};
-$('backup').onclick=()=>downloadFile(JSON.stringify(orders,null,2),'bardahl-backup.json','application/json');
-function downloadFile(content,name,type){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-$('restoreBtn').onclick=()=>$('restoreFile').click();
+
+function loadOrders(){
+  try{
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    orders = Array.isArray(data)
+      ? data.map(o => ({
+          ...o,
+          id: o.id || makeId(),
+          items: Array.isArray(o.items) ? o.items : [],
+          total: Number(o.total) || 0,
+          car: String(o.car || ''),
+          date: String(o.date || '')
+        }))
+      : [];
+  }catch(e){
+    orders = [];
+  }
+}
+
+function persist(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
+    return true;
+  }catch(e){
+    alert('Не удалось сохранить данные. Сделайте резервную копию и освободите место в хранилище браузера.');
+    return false;
+  }
+}
+
+function initServices(){
+  const select = $('service');
+
+  for(const [name,price] of services){
+    const op = document.createElement('option');
+    op.value = name;
+    op.textContent = name;
+    op.dataset.price = price;
+    select.append(op);
+  }
+
+  const op = document.createElement('option');
+  op.value = '__custom__';
+  op.textContent = 'Услуга СТО — прописать вручную';
+  select.append(op);
+
+  select.onchange = () => {
+    const selected = select.selectedOptions[0];
+    const manual = selected.value === '__custom__';
+    $('custom').hidden = !manual;
+    $('price').value = selected.dataset.price || '';
+    if(manual) $('custom').focus();
+  };
+
+  select.onchange();
+}
+
+function drawCart(){
+  const root = $('cart');
+  root.replaceChildren();
+
+  if(!cart.length){
+    root.innerHTML = '<div class="empty">Добавьте услуги в заказ</div>';
+  }
+
+  cart.forEach((it,i) => {
+    const row = document.createElement('div');
+    row.className = 'item itemrow';
+
+    const name = document.createElement('div');
+    name.className = 'itemname';
+    name.textContent = it.name;
+
+    const price = document.createElement('div');
+    price.className = 'price';
+    price.textContent = money(it.price);
+
+    const remove = document.createElement('button');
+    remove.className = 'small danger';
+    remove.type = 'button';
+    remove.textContent = 'Убрать';
+    remove.onclick = () => {
+      cart.splice(i,1);
+      drawCart();
+    };
+
+    row.append(name,price,remove);
+    root.append(row);
+  });
+
+  $('cartTotal').textContent = 'Итого: ' + money(
+    cart.reduce((s,i) => s + Number(i.price),0)
+  );
+}
+
+$('add').onclick = () => {
+  const selected = $('service').selectedOptions[0];
+  const manual = selected.value === '__custom__';
+  const name = manual ? $('custom').value.trim() : selected.value;
+  const price = Number($('price').value);
+
+  if(!name || !Number.isFinite(price) || price <= 0){
+    alert('Укажите услугу и цену больше нуля.');
+    return;
+  }
+
+  cart.push({name,price:Math.round(price)});
+  $('custom').value = '';
+  drawCart();
+};
+
+$('save').onclick = () => {
+  const car = $('car').value.trim();
+
+  if(!car || !cart.length){
+    alert('Укажите автомобиль и добавьте хотя бы одну услугу.');
+    return;
+  }
+
+  const date = $('date').value || today();
+  const total = cart.reduce((s,i) => s + Number(i.price),0);
+
+  if(editingId){
+    const idx = orders.findIndex(o => o.id === editingId);
+    if(idx >= 0){
+      orders[idx] = {...orders[idx],car,date,items:[...cart],total};
+    }
+    editingId = null;
+    $('save').textContent = 'Сохранить заказ';
+  }else{
+    orders.push({
+      id:makeId(),
+      car,
+      date,
+      items:[...cart],
+      total,
+      createdAt:new Date().toISOString()
+    });
+  }
+
+  if(!persist()) return;
+
+  cart = [];
+  $('car').value = '';
+  $('custom').value = '';
+  drawCart();
+  drawReport();
+  drawOrders();
+  alert('Заказ сохранён.');
+};
+
+$('date').value = today();
+$('date').onchange = () => {
+  drawReport();
+  drawOrders();
+};
+
+function drawReport(){
+  const date = $('date').value || today();
+  const month = date.slice(0,7);
+  const year = date.slice(0,4);
+
+  const groups = [
+    ['День',orders.filter(o => o.date === date)],
+    ['Месяц',orders.filter(o => o.date.startsWith(month))],
+    ['Год',orders.filter(o => o.date.startsWith(year))]
+  ];
+
+  const root = $('report');
+  root.replaceChildren();
+
+  groups.forEach(([label,list]) => {
+    const box = document.createElement('div');
+    box.className = 'stat';
+
+    const title = document.createElement('span');
+    title.className = 'muted';
+    title.textContent = label;
+
+    const count = document.createElement('div');
+    count.textContent = `${list.length} заказ(ов)`;
+
+    const total = document.createElement('strong');
+    total.textContent = money(list.reduce((s,o) => s + Number(o.total || 0),0));
+
+    box.append(title,count,total);
+    root.append(box);
+  });
+}
+
+function drawOrders(){
+  const root = $('orders');
+  root.replaceChildren();
+
+  const q = $('search').value.trim().toLowerCase();
+
+  const filtered = orders.filter(o =>
+    o.date === ($('date').value || today()) &&
+    (
+      String(o.car).toLowerCase().includes(q) ||
+      o.items.some(i => String(i.name).toLowerCase().includes(q))
+    )
+  );
+
+  if(!filtered.length){
+    root.innerHTML = '<div class="empty">Заказов за выбранную дату не найдено</div>';
+    return;
+  }
+
+  for(const o of filtered){
+    const box = document.createElement('article');
+    box.className = 'order';
+
+    const head = document.createElement('div');
+    head.className = 'orderhead';
+    head.textContent = o.car + ' · ' + o.date;
+
+    const detail = document.createElement('div');
+    detail.className = 'orderdetail';
+    detail.textContent = o.items.map(i => `${i.name} — ${money(i.price)}`).join('; ');
+
+    const total = document.createElement('div');
+    total.className = 'total';
+    total.textContent = 'Итого: ' + money(o.total);
+
+    const edit = document.createElement('button');
+    edit.className = 'small secondary';
+    edit.type = 'button';
+    edit.textContent = 'Редактировать';
+    edit.onclick = () => {
+      editingId = o.id;
+      $('car').value = o.car;
+      $('date').value = o.date;
+      cart = o.items.map(i => ({...i}));
+      drawCart();
+      $('save').textContent = 'Сохранить изменения';
+      window.scrollTo({top:0,behavior:'smooth'});
+    };
+
+    const del = document.createElement('button');
+    del.className = 'small danger';
+    del.type = 'button';
+    del.textContent = 'Удалить заказ';
+    del.onclick = () => {
+      if(confirm('Удалить этот заказ?')){
+        orders = orders.filter(x => x.id !== o.id);
+        if(persist()){
+          drawReport();
+          drawOrders();
+        }
+      }
+    };
+
+    box.append(head,detail,total,edit,del);
+    root.append(box);
+  }
+}
+
+$('search').oninput = drawOrders;
+
+$('exportCsv').onclick = () => {
+  const rows = [
+    ['Дата','Автомобиль','Услуги','Итого'],
+    ...orders.map(o => [
+      o.date,
+      o.car,
+      o.items.map(i => `${i.name}: ${i.price}`).join('; '),
+      o.total
+    ])
+  ];
+
+  const csv = '\ufeff' + rows.map(r =>
+    r.map(v => '"' + String(v).replace(/"/g,'""') + '"').join(';')
+  ).join('\r\n');
+
+  downloadFile(csv,'bardahl-orders.csv','text/csv;charset=utf-8');
+};
+
+$('backup').onclick = () => {
+  downloadFile(JSON.stringify(orders,null,2),'bardahl-backup.json','application/json');
+};
+
+function downloadFile(content,name,type){
+  const blob = new Blob([content],{type});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = name;
+  document.body.append(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url),1000);
+}
+
+$('restoreBtn').onclick = () => $('restoreFile').click();
+
+/* Исправленный импорт резервных копий */
 $('restoreFile').onchange = async () => {
   const file = $('restoreFile').files[0];
-  if (!file) return;
+  if(!file) return;
 
-  try {
+  try{
     const parsed = JSON.parse(await file.text());
 
-    // Поддерживаем оба формата резервных копий:
-    // 1. Массив заказов [...]
-    // 2. Объект с массивом заказов внутри поля orders
+    // Принимаем оба формата:
+    // [...] и {"app":"BARDAHL","version":2,"orders":[...]}
     const data = Array.isArray(parsed)
       ? parsed
       : parsed && Array.isArray(parsed.orders)
         ? parsed.orders
         : null;
 
-    if (!data || !data.every(o =>
-      o &&
-      typeof o === 'object' &&
-      !Array.isArray(o) &&
-      Array.isArray(o.items) &&
-      o.items.every(i =>
-        i &&
-        typeof i === 'object' &&
-        typeof i.name === 'string' &&
-        Number.isFinite(Number(i.price))
-      )
-    )) {
-      throw new Error('Некорректный формат резервной копии');
+    if(!data){
+      throw new Error('В файле не найден массив заказов');
     }
 
-    if (!confirm(
+    // Проверяем данные, не изменяя исходный файл.
+    for(const o of data){
+      if(!o || typeof o !== 'object' || Array.isArray(o)){
+        throw new Error('Неверная запись заказа');
+      }
+
+      if(o.items !== undefined && !Array.isArray(o.items)){
+        throw new Error('Неверный список услуг');
+      }
+
+      for(const item of (o.items || [])){
+        if(!item || typeof item !== 'object' || typeof item.name !== 'string'){
+          throw new Error('Неверная запись услуги');
+        }
+
+        if(item.price === undefined || !Number.isFinite(Number(item.price))){
+          throw new Error('Некорректная цена услуги');
+        }
+      }
+    }
+
+    if(!confirm(
       `Восстановить ${data.length} заказ(ов)? ` +
-      'Текущая история будет заменена.'
-    )) return;
+      'Текущая история заказов будет заменена.'
+    )){
+      return;
+    }
 
     const restoredOrders = data.map(o => ({
       ...o,
       id: o.id || makeId(),
       car: String(o.car || ''),
       date: String(o.date || ''),
-      items: o.items.map(i => ({
-        ...i,
-        name: String(i.name),
-        price: Number(i.price)
-      })),
+      items: Array.isArray(o.items)
+        ? o.items.map(i => ({...i, name:String(i.name), price:Number(i.price)}))
+        : [],
       total: Number(o.total) || 0
     }));
 
     const previousOrders = orders;
     orders = restoredOrders;
 
-    if (persist()) {
+    if(persist()){
       drawReport();
       drawOrders();
       alert(`Готово! Восстановлено заказов: ${orders.length}.`);
-    } else {
+    }else{
       orders = previousOrders;
-      alert('Не удалось сохранить восстановленные заказы.');
-    }
-  } catch (e) {
-    alert(
-      'Не удалось прочитать копию JSON. ' +
-      'Проверьте, что выбран полный файл резервной копии BARDAHL.'
-    );
-  } finally {
-    }
-
-    if (!confirm(
-      `Восстановить ${data.length} заказ(ов)? ` +
-      'Текущая история будет заменена.'
-    )) return;
-
-    const restoredOrders = data.map(o => ({
-      ...o,
-      id: o.id || makeId(),
-      car: String(o.car || ''),
-      date: String(o.date || ''),
-      items: o.items.map(i => ({
-        ...i,
-        name: String(i.name),
-        price: Number(i.price)
-      })),
-      total: Number(o.total) || 0
-    }));
-
-    const previousOrders = orders;
-    orders = restoredOrders;
-
-    if (persist()) {
       drawReport();
       drawOrders();
-      alert(`Готово! Восстановлено заказов: ${orders.length}.`);
-    } else {
-      orders = previousOrders;
-      alert('Не удалось сохранить восстановленные заказы.');
     }
-  } catch (e) {
-    alert(
-      'Не удалось прочитать копию JSON. ' +
-      'Проверьте, что выбран полный файл резервной копии BARDAHL.'
-    );
-  } finally {
+  }catch(e){
+    alert('Ошибка импорта: ' + (e && e.message ? e.message : 'неизвестная ошибка'));
+  }finally{
     $('restoreFile').value = '';
   }
 };
-loadOrders();initServices();drawCart();drawReport();drawOrders();
-if ('serviceWorker' in navigator && location.protocol.startsWith('http')) { window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{})); }
+
+loadOrders();
+initServices();
+drawCart();
+drawReport();
+drawOrders();
+
+if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+  window.addEventListener('load',() => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
 </script>
 </body>
 </html>
