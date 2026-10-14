@@ -149,70 +149,7 @@ function loadOrders(){
       ? data.map(o => ({
           ...o,
           id: o.id || makeId(),
-          items: Array.isArray(o.items) ? o.items : [],
-          total: Number(o.total) || 0,
-          car: String(o.car || ''),
-          date: String(o.date || '')
-        }))
-      : [];
-  }catch(e){
-    orders = [];
-  }
-}
-
-function persist(){
-  try{
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
-    return true;
-  }catch(e){
-    alert('Не удалось сохранить данные. Сделайте резервную копию и освободите место в хранилище браузера.');
-    return false;
-  }
-}
-
-function initServices(){
-  const select = $('service');
-
-  for(const [name,price] of services){
-    const op = document.createElement('option');
-    op.value = name;
-    op.textContent = name;
-    op.dataset.price = price;
-    select.append(op);
-  }
-
-  const op = document.createElement('option');
-  op.value = '__custom__';
-  op.textContent = 'Услуга СТО — прописать вручную';
-  select.append(op);
-
-  select.onchange = () => {
-    const selected = select.selectedOptions[0];
-    const manual = selected.value === '__custom__';
-    $('custom').hidden = !manual;
-    $('price').value = selected.dataset.price || '';
-    if(manual) $('custom').focus();
-  };
-
-  select.onchange();
-}
-
-function drawCart(){
-  const root = $('cart');
-  root.replaceChildren();
-
-  if(!cart.length){
-    root.innerHTML = '<div class="empty">Добавьте услуги в заказ</div>';
-  }
-
-  cart.forEach((it,i) => {
-    const row = document.createElement('div');
-    row.className = 'item itemrow';
-
-    const name = document.createElement('div');
-    name.className = 'itemname';
-    name.textContent = it.name;
-
+          
     const price = document.createElement('div');
     price.className = 'price';
     price.textContent = money(it.price);
