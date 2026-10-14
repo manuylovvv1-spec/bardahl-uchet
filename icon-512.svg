@@ -1,7 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="96" fill="#111111"/>
-<path d="M44 128H468L438 174H74Z" fill="#ffd400"/>
-<text x="256" y="274" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="91" font-weight="900" font-style="italic" letter-spacing="-4" fill="#ffffff">BARDAHL</text>
-<path d="M74 320H438L468 366H44Z" fill="#ffd400"/>
-<text x="256" y="415" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="27" font-weight="700" letter-spacing="5" fill="#ffffff">SERVICE</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 192 192">
+  <rect width="512" height="512" rx="34" fill="#111111"/>
+  <path d="M22 47 L170 27 L170 143 L22 163 Z" fill="#ffd400" stroke="#f5f5f5" stroke-width="3"/>
+  <path d="M29 54 L163 36 L163 47 L29 65 Z" fill="#111111"/>
+  <g transform="translate(34 57) skewY(-7)">
+    <text x="0" y="60" font-family="Arial Black,Arial,sans-serif" font-size="31" font-weight="900" font-style="italic" letter-spacing="-1.8" fill="#111111">BARDAHL</text>
+    <path d="M0 68 H120" stroke="#111111" stroke-width="4"/>
+  </g>
+  <g transform="translate(127 43) rotate(-7)">
+    <rect x="0" y="0" width="31" height="14" fill="#111111"/>
+    <path d="M0 0H10V7H0ZM20 0H31V7H20ZM10 7H20V14H10Z" fill="#ffffff"/>
+  </g>
+  <text x="96" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="#ffd400">SERVICE</text>
 </svg>
