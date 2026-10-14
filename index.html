@@ -84,7 +84,6 @@ $('backup').onclick=()=>downloadFile(JSON.stringify(orders,null,2),'bardahl-back
 function downloadFile(content,name,type){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 $('restoreBtn').onclick=()=>$('restoreFile').click();
 
-$('restoreFile').onchange = async () => {
   const file = $('restoreFile').files[0];
   if (!file) return;
 
